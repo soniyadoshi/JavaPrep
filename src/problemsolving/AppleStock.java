@@ -14,7 +14,7 @@ public class AppleStock {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		int[] stockPricesYesterday = new int[] {10, -7, -5, -8, -11, 9};
+		int[] stockPricesYesterday = new int[] {7,1,5,3,6,4};
 
 		getMaxProfit(stockPricesYesterday);
 		// returns 6 (buying for $5 and selling for $11)
@@ -24,19 +24,18 @@ public class AppleStock {
 	public static void getMaxProfit(int stckPrices[])
 	{
 		int minBuy = stckPrices[0];
-		int maxSell = stckPrices[1];
 		int maxProfit =0;
 		
 		for(int i=0; i<stckPrices.length; i++)
 		{
-			
-			maxProfit = (maxSell) - minBuy;
 
 			minBuy = Math.min(minBuy, stckPrices[i]);
-			
-			maxSell = Math.max(maxSell, stckPrices[i]);
+
+			if (stckPrices[i] - minBuy > maxProfit) {
+				maxProfit = stckPrices[i] - minBuy;
+			}
+
 		}
-		System.out.println(minBuy +" :: "+ maxSell);
 		System.out.println( "profit :: "+ maxProfit);	
 		
 	}

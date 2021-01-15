@@ -5,8 +5,8 @@ public class LeftRotationArray {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		int input[] = {};
-		int k =0;
+		int input[] = {-1,-100,3,99};
+		int k =2;
 		int n = input.length;
 		System.out.println(n);
 		leftRotate(input, n, k);
