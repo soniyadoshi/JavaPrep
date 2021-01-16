@@ -27,21 +27,35 @@ public class SudokuBoard {
 		int rowL = board[0].length;
 		int colL = board.length;
 		
-		if (isRowColValid(rowL, colL, board) && isRowColValid(colL, rowL, board) && IsQuadrValid(board)) {
+		if (isColValid(board) && isRowValid(board) && IsQuadrValid(board)) {
 			System.out.println("valid");
 		} else {
 			System.out.println("Not Valid");
 		}
 	}
 	
-	private static boolean isRowColValid(int iLen, int jLen, int[][] board) {
-		for (int i=0; i< iLen; i++) {
+	private static boolean isRowValid(int[][] board) {
+		for (int i=0; i< board.length; i++) {
 			Set<Integer> set = new HashSet<>();
-			for (int j=0; j<jLen; j++) {
+			for (int j=0; j<board[0].length; j++) {
 				if (!set.add(board[i][j])) {
 					return false;
 				}
 			}
+			System.out.println("row " + set.toString());
+		}
+		return true;
+	}
+
+	private static boolean isColValid(int[][] board) {
+		for (int i=0; i< board.length; i++) {
+			Set<Integer> set = new HashSet<>();
+			for (int j=0; j<board[0].length; j++) {
+				if (!set.add(board[j][i])) {
+					return false;
+				}
+			}
+			System.out.println("col " + set.toString());
 		}
 		return true;
 	}
@@ -49,18 +63,24 @@ public class SudokuBoard {
 	private static boolean IsQuadrValid (int[][] board) {
 	
 		int i =0;
-		int j = 0;	
 		
-		while (i<board[0].length -1 && j<board.length-1) {
-			Set<Integer> set = new HashSet<>();
-			if(!set.add(board[i][j])
-					|| !set.add(board[i+1][j])
-					|| !set.add(board[i][j+1])
-					|| !set.add(board[i+1][j+1])){
-				return false;
+		while (i<board[0].length ) {
+			int j = 0;
+			while (j<board.length) {
+
+				Set<Integer> set = new HashSet<>();
+
+				for (int k = i; k < i + 2; k++) {
+					for (int l = j; l < l + 2; l++) {
+						if (!set.add(board[k][l])) {
+							return false;
+						}
+					}
+				}
+				j = j + 2;
+				System.out.println("q " + set.toString());
 			}
 			i = i+2;
-			j= j+2;
 		}
 		return true;	
 	}
