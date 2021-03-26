@@ -63,7 +63,7 @@ public class MyHashMap {
 	
 	
 	
-	class Entry{
+	class Entry {
 		private String key;
 		private String value;
 		private Entry next;
